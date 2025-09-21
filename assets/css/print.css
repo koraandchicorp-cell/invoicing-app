@@ -1,0 +1,76 @@
+/* Print-specific styles for exporting to PDF */
+@media print {
+    /* Hide everything by default */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Show only the printable area and its contents */
+    .printable-area, .printable-area * {
+        visibility: visible;
+    }
+
+    /* Position the printable area at the top of the page */
+    .printable-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    /* General print resets */
+    body {
+        background-color: #fff;
+        color: #000;
+        font-size: 12pt;
+    }
+
+    /* Hide elements that should not be printed */
+    .print-hidden, #theme-toggle, #settings-btn, #actions, .invoice-list-item, #invoice-list-empty, #dashboard {
+        display: none !important;
+    }
+
+    /* Make the invoice form look like a static document */
+    #invoice-form-section {
+        display: block !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Style input fields to look like plain text */
+    input, textarea, select {
+        border: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+        padding: 2px !important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        resize: none; /* for textarea */
+        width: 100%;
+    }
+
+    /* Hide buttons within the form */
+    #add-item-btn, .remove-item-btn {
+        display: none !important;
+    }
+
+    /* Ensure colors are print-friendly */
+    * {
+        color: #000 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Prevent page breaks inside elements */
+    .invoice-item, .grid {
+        page-break-inside: avoid;
+    }
+
+    h2, h3 {
+        page-break-after: avoid;
+    }
+}

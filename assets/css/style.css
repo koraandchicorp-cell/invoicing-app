@@ -1,0 +1,41 @@
+/* Custom styles for a more polished, Apple-like feel */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, input, select, textarea, [role="button"] {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+/* Add a subtle focus ring to all focusable elements for better accessibility */
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--tw-ring-color, #4f46e5); /* Use indigo-600 as default ring color */
+    outline-offset: 2px;
+    border-radius: 0.375rem; /* 6px */
+}
+
+/* Specific component transitions */
+#invoice-form-section, #settings-modal {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.invoice-list-item {
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* To hide/show elements with a fade */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoicer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/print.css" media="print">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 font-sans">
+
+    <div id="app" class="container mx-auto p-4">
+
+        <header class="flex justify-between items-center bg-white dark:bg-gray-800 shadow-sm rounded-lg p-4 mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Invoicer</h1>
+            <div class="flex items-center">
+                 <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none rounded-full p-2">
+                    <svg id="theme-icon-light" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="theme-icon-dark" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <button id="settings-btn" class="ml-4 text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none rounded-full p-2">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Dashboard Overview -->
+            <section id="dashboard" class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Dashboard</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-200">Total Invoices</h3>
+                        <p id="total-invoices" class="text-2xl font-semibold text-blue-900 dark:text-blue-100">0</p>
+                    </div>
+                    <div class="bg-yellow-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h3 class="font-bold text-yellow-800 dark:text-yellow-200">Outstanding Balance</h3>
+                        <p id="outstanding-balance" class="text-2xl font-semibold text-yellow-900 dark:text-yellow-100">$0.00</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h3 class="font-bold text-green-800 dark:text-green-200">Total Revenue</h3>
+                        <p id="total-revenue" class="text-2xl font-semibold text-green-900 dark:text-green-100">$0.00</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <section id="actions" class="mb-6 flex justify-between items-center">
+                <button id="create-invoice-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900">
+                    Create New Invoice
+                </button>
+                <div class="relative">
+                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </span>
+                    <input type="text" id="search-bar" placeholder="Search by client or invoice #" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm pl-10 p-2 w-64 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                </div>
+            </section>
+
+            <!-- Create Invoice Form (hidden by default) -->
+            <section id="invoice-form-section" class="hidden bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 mb-6">
+                <!-- Form content will be dynamically rendered here by JS -->
+            </section>
+
+            <!-- Invoice List -->
+            <section id="invoice-list" class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
+                 <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Invoices</h2>
+                    <div class="flex items-center">
+                        <label for="filter-status" class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Filter by:</label>
+                        <select id="filter-status" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            <option value="all">All</option>
+                            <option value="paid">Paid</option>
+                            <option value="pending">Pending</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="invoices-container">
+                    <!-- Invoice list header -->
+                    <div class="grid grid-cols-5 gap-4 p-2 border-b dark:border-gray-700 font-bold text-gray-600 dark:text-gray-300 text-sm">
+                        <div>Invoice #</div>
+                        <div>Client</div>
+                        <div>Date</div>
+                        <div class="text-right">Amount</div>
+                        <div class="text-center">Status</div>
+                    </div>
+                    <!-- Invoices will be listed here -->
+                     <div class="text-center p-8 text-gray-500 dark:text-gray-400" id="invoice-list-empty">
+                        No invoices yet. Click "Create New Invoice" to start.
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Settings Modal (hidden by default) -->
+        <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Settings</h2>
+                <!-- Settings form will be rendered here -->
+                <div class="mt-6 flex justify-end">
+                    <button id="cancel-settings-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg mr-2">Cancel</button>
+                    <button id="save-settings-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">Save Settings</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
