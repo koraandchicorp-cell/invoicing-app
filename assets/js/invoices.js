@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     initShared();
+
+    // Check for search parameter in URL
+    const params = new URLSearchParams(window.location.search);
+    const searchTerm = params.get('search');
+    if (searchTerm) {
+        const searchBar = document.getElementById('search-bar');
+        searchBar.value = decodeURIComponent(searchTerm);
+    }
+
     setupEventListeners();
     renderInvoiceList();
 });

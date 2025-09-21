@@ -49,8 +49,10 @@ function handleSaveInvoice(event) {
 
     const clientDetails = {
         name: form.querySelector('#client-name').value,
+        company: form.querySelector('#client-company').value,
         address: form.querySelector('#client-address').value,
         email: form.querySelector('#client-email').value,
+        phone: form.querySelector('#client-phone').value,
     };
 
     // Client Management: Save or update client
@@ -201,7 +203,15 @@ function getInvoiceFormHTML(invoice) {
                 <div class="flex justify-between items-start"><input type="text" id="invoice-number" class="input-field text-lg hidden" value="${invoice.invoiceNumber}"><h2 class="text-2xl font-bold text-gray-800 dark:text-white">${invoice.id ? 'Edit Invoice' : 'New Invoice'} ${invoice.invoiceNumber}</h2><div class="text-right"><label for="invoice-date" class="block text-sm">Date</label><input type="date" id="invoice-date" class="input-field" value="${invoice.date}"></div></div>
                 <div class="grid grid-cols-2 gap-6">
                     <div><h3 class="font-bold mb-2">From:</h3><p>${state.settings.company.name}</p><p>${state.settings.company.address}</p><p>${state.settings.company.email}</p></div>
-                    <div><h3 class="font-bold mb-2">To:</h3><select id="client-select" class="input-field w-full mb-2"><option value="">--- New Client ---</option>${clientOptions}</select><input id="client-name" class="input-field w-full mb-2" placeholder="Client Name" value="${invoice.to.name || ''}"><textarea id="client-address" class="input-field w-full mb-2" placeholder="Client Address">${invoice.to.address || ''}</textarea><input id="client-email" type="email" class="input-field w-full" placeholder="Client Email" value="${invoice.to.email || ''}"></div>
+                    <div>
+                        <h3 class="font-bold mb-2">To:</h3>
+                        <select id="client-select" class="input-field w-full mb-2"><option value="">--- New Client ---</option>${clientOptions}</select>
+                        <input id="client-name" class="input-field w-full mb-2" placeholder="Client Name" value="${invoice.to.name || ''}">
+                        <input id="client-company" class="input-field w-full mb-2" placeholder="Company" value="${invoice.to.company || ''}">
+                        <input id="client-email" type="email" class="input-field w-full mb-2" placeholder="Email" value="${invoice.to.email || ''}">
+                        <input id="client-phone" type="tel" class="input-field w-full mb-2" placeholder="Phone" value="${invoice.to.phone || ''}">
+                        <textarea id="client-address" class="input-field w-full" placeholder="Address">${invoice.to.address || ''}</textarea>
+                    </div>
                 </div>
                 <div><div class="grid grid-cols-12 gap-2 mb-2 font-bold text-sm text-gray-600 dark:text-gray-300"><div class="col-span-4">Description</div><div class="col-span-2">Quantity</div><div class="col-span-2">Price</div><div class="col-span-3 text-right pr-4">Total</div></div><div id="invoice-items">${itemsHTML}</div><button type="button" id="add-item-btn" class="mt-2 btn-secondary text-sm">Add Item</button></div>
                 <div class="flex justify-end"><div class="w-1/2 space-y-2 totals-section"><div class="flex justify-between"><span>Subtotal</span><span id="subtotal">$0.00</span></div><div class="flex justify-between items-center"><span>Tax (%)</span><input type="number" id="tax-rate" class="input-field w-20 text-right" value="${invoice.taxRate}"><span id="tax-amount" class="w-24 text-right">$0.00</span></div><div class="flex justify-between items-center"><span>Discount</span><div class="flex items-center"><select id="discount-type" class="input-field w-24 mr-1"><option value="fixed" ${invoice.discount?.type === 'fixed' ? 'selected' : ''}>Fixed</option><option value="percentage" ${invoice.discount?.type === 'percentage' ? 'selected' : ''}>%</option></select><input type="number" id="discount-value" class="input-field w-20 text-right" value="${invoice.discount?.value || 0}"></div><span id="discount-amount" class="w-24 text-right">$0.00</span></div><div class="border-t border-gray-300 dark:border-gray-600 my-2"></div><div class="flex justify-between font-bold text-lg"><span>Total</span><span id="total">$0.00</span></div></div></div>

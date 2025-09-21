@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoices - Invoicer</title>
+    <title>Clients - Invoicer</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/print.css" media="print">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 font-sans">
 
@@ -16,8 +15,8 @@
             <a href="index.html" class="text-2xl font-bold text-gray-800 dark:text-white">Invoicer</a>
             <nav class="flex items-center space-x-4">
                 <a href="index.html" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Dashboard</a>
-                <a href="invoices.html" class="font-bold text-indigo-600 dark:text-indigo-400">Invoices</a>
-                <a href="clients.html" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Clients</a>
+                <a href="invoices.html" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Invoices</a>
+                <a href="clients.html" class="font-bold text-indigo-600 dark:text-indigo-400">Clients</a>
             </nav>
             <div class="flex items-center">
                  <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none rounded-full p-2">
@@ -31,41 +30,24 @@
         </header>
 
         <main>
-            <!-- Actions -->
-            <section id="actions" class="mb-6 flex justify-between items-center">
-                <a href="invoice-edit.html" id="create-invoice-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900">
-                    Create New Invoice
-                </a>
-                <div class="relative">
-                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                        <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    </span>
-                    <input type="text" id="search-bar" placeholder="Search by client or invoice #" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm pl-10 p-2 w-64 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                </div>
-            </section>
-
-            <!-- Invoice List -->
-            <section id="invoice-list" class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
+            <section id="client-list-section" class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
                  <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">All Invoices</h2>
-                    <div class="flex items-center">
-                        <label for="filter-status" class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Filter by:</label>
-                        <select id="filter-status" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                            <option value="all">All</option>
-                            <option value="paid">Paid</option>
-                            <option value="pending">Pending</option>
-                            <option value="draft">Draft</option>
-                        </select>
-                    </div>
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Clients</h2>
+                    <button id="add-client-btn" class="btn-primary">Add New Client</button>
                 </div>
-                <div id="invoices-container">
-                    <!-- Invoices will be dynamically listed here by invoices.js -->
-                     <div class="text-center p-8 text-gray-500 dark:text-gray-400" id="invoice-list-empty">
-                        No invoices found.
+                <div id="clients-container">
+                    <!-- Clients will be dynamically listed here by clients.js -->
+                     <div class="text-center p-8 text-gray-500 dark:text-gray-400" id="client-list-empty">
+                        No clients found. Click "Add New Client" to start.
                     </div>
                 </div>
             </section>
         </main>
+
+        <!-- Client Form Modal (hidden by default) -->
+        <div id="client-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+             <!-- Client add/edit form will be rendered here by clients.js -->
+        </div>
 
         <!-- Settings Modal (hidden by default) -->
         <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
@@ -75,6 +57,6 @@
     </div>
 
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/invoices.js"></script>
+    <script src="assets/js/clients.js"></script>
 </body>
 </html>
