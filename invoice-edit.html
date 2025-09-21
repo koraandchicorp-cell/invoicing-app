@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Invoicer</title>
+    <title>Edit Invoice - Invoicer</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/print.css" media="print">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 font-sans">
 
     <div id="app" class="container mx-auto p-4">
 
         <header class="flex justify-between items-center bg-white dark:bg-gray-800 shadow-sm rounded-lg p-4 mb-6">
-            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Invoicer</h1>
+            <a href="index.html" class="text-2xl font-bold text-gray-800 dark:text-white">Invoicer</a>
             <div class="flex items-center">
                  <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none rounded-full p-2">
                     <svg id="theme-icon-light" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -25,27 +26,11 @@
         </header>
 
         <main>
-            <!-- Dashboard Overview -->
-            <section id="dashboard" class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Dashboard</h2>
-                    <a href="invoices.html" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg">
-                        View All Invoices
-                    </a>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="bg-blue-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <h3 class="font-bold text-blue-800 dark:text-blue-200">Total Invoices</h3>
-                        <p id="total-invoices" class="text-2xl font-semibold text-blue-900 dark:text-blue-100">0</p>
-                    </div>
-                    <div class="bg-yellow-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <h3 class="font-bold text-yellow-800 dark:text-yellow-200">Outstanding Balance</h3>
-                        <p id="outstanding-balance" class="text-2xl font-semibold text-yellow-900 dark:text-yellow-100">$0.00</p>
-                    </div>
-                    <div class="bg-green-50 dark:bg-gray-700 p-4 rounded-lg">
-                        <h3 class="font-bold text-green-800 dark:text-green-200">Total Revenue</h3>
-                        <p id="total-revenue" class="text-2xl font-semibold text-green-900 dark:text-green-100">$0.00</p>
-                    </div>
+            <!-- Create/Edit Invoice Form -->
+            <section id="invoice-form-section" class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 mb-6">
+                <!-- Form content will be dynamically rendered here by invoice-edit.js -->
+                <div class="text-center p-8 text-gray-500 dark:text-gray-400">
+                    Loading form...
                 </div>
             </section>
         </main>
@@ -58,6 +43,6 @@
     </div>
 
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/invoice-edit.js"></script>
 </body>
 </html>
